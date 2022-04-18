@@ -1,13 +1,9 @@
 import 'package:chatapp/Model/ChatModel.dart';
-import 'package:chatapp/Screens/CameraScreen.dart';
-import 'package:chatapp/Screens/Homescreen.dart';
 import 'package:chatapp/Screens/IndividualPage.dart';
-import 'package:chatapp/Screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
 
   runApp(MyApp());
 }
@@ -26,9 +22,9 @@ class MyApp extends StatelessWidget {
           primaryColor: Color(0xFF075E54),
           accentColor: Color(0xFF128C7E)),
       home: IndividualPage(
-                      chatModel: chatModel,
-                      sourchat: sourchat,
-                    ),
+        chatModel: chatModel,
+        sourchat: sourchat,
+      ),
     );
   }
 }
