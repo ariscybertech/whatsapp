@@ -125,76 +125,82 @@ class _IndividualPageState extends State<IndividualPage> {
                         children: [
                           Container(
                             width: MediaQuery.of(context).size.width,
-                            child: Card(
-                              elevation: 0,
-                              margin:
-                                  EdgeInsets.only(left: 2, right: 2, bottom: 8),
-                              child: TextFormField(
-                                controller: _controller,
-                                focusNode: focusNode,
-                                textAlignVertical: TextAlignVertical.center,
-                                keyboardType: TextInputType.multiline,
-                                maxLines: 5,
-                                minLines: 1,
-                                onChanged: (value) {
-                                  if (value.length > 0) {
-                                    setState(() {
-                                      sendButton = true;
-                                    });
-                                  } else {
-                                    setState(() {
-                                      sendButton = false;
-                                    });
-                                  }
-                                },
-                                decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: "Type a message",
-                                  hintStyle: TextStyle(color: Colors.grey),
-                                  prefixIcon: IconButton(
-                                    icon: Icon(
-                                      show
-                                          ? Icons.keyboard
-                                          : Icons.emoji_emotions_outlined,
-                                    ),
-                                    onPressed: () {
-                                      if (!show) {
-                                        focusNode.unfocus();
-                                        focusNode.canRequestFocus = false;
+                            child: Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(12,12,12,0),
+                                child: Card(
+                                  color: Color(0xfff8f8f8),
+                                  elevation: 0,
+                                  margin:
+                                      EdgeInsets.only(left: 2, right: 2, bottom: 8),
+                                  child: TextFormField(
+                                    controller: _controller,
+                                    focusNode: focusNode,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    keyboardType: TextInputType.multiline,
+                                    maxLines: 5,
+                                    minLines: 1,
+                                    onChanged: (value) {
+                                      if (value.length > 0) {
+                                        setState(() {
+                                          sendButton = true;
+                                        });
+                                      } else {
+                                        setState(() {
+                                          sendButton = false;
+                                        });
                                       }
-                                      setState(() {
-                                        show = !show;
-                                      });
                                     },
-                                  ),
-                                  suffixIcon: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      IconButton(
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "Type a message",
+                                      hintStyle: TextStyle(color: Colors.grey),
+                                      prefixIcon: IconButton(
                                         icon: Icon(
-                                          sendButton ? Icons.send : Icons.mic,
-                                          color: Color(0xff7f92a0),
+                                          show
+                                              ? Icons.keyboard
+                                              : Icons.emoji_emotions_outlined,
                                         ),
                                         onPressed: () {
-                                          if (sendButton) {
-                                            _scrollController.animateTo(
-                                                _scrollController
-                                                    .position.maxScrollExtent,
-                                                duration: Duration(
-                                                    milliseconds: 300),
-                                                curve: Curves.easeOut);
-                                            sendMessage(
-                                                _controller.text, 1, 1);
-                                            _controller.clear();
-                                            setState(() {
-                                              sendButton = false;
-                                            });
+                                          if (!show) {
+                                            focusNode.unfocus();
+                                            focusNode.canRequestFocus = false;
                                           }
+                                          setState(() {
+                                            show = !show;
+                                          });
                                         },
                                       ),
-                                    ],
+                                      suffixIcon: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          IconButton(
+                                            icon: Icon(
+                                              sendButton ? Icons.send : Icons.mic,
+                                              color: Color(0xff7f92a0),
+                                            ),
+                                            onPressed: () {
+                                              if (sendButton) {
+                                                _scrollController.animateTo(
+                                                    _scrollController
+                                                        .position.maxScrollExtent,
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    curve: Curves.easeOut);
+                                                sendMessage(
+                                                    _controller.text, 1, 1);
+                                                _controller.clear();
+                                                setState(() {
+                                                  sendButton = false;
+                                                });
+                                              }
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                      contentPadding: EdgeInsets.all(5),
+                                    ),
                                   ),
-                                  contentPadding: EdgeInsets.all(5),
                                 ),
                               ),
                             ),
